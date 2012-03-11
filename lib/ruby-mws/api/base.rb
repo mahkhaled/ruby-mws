@@ -23,7 +23,7 @@ module MWS
       def self.def_request(requests, *options)
         [requests].flatten.each do |name|
           # class variable = a way to store options splat to pass into pseudomethod
-          self.class_variable_set("@@#{name}_options", options.first)
+          class_variable_set("@@#{name}_options", options.first)
           self.class_eval %Q{
             def #{name}(params={})
               send_request(:#{name}, params, @@#{name}_options)
